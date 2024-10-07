@@ -299,31 +299,28 @@ const jsonData = {
     }
 }
 
-// Function to format the date from JSON format
+
 function formatDate(jsonDate) {
     const timestamp = parseInt(jsonDate.replace("/Date(", "").replace(")/", ""));
     return new Date(timestamp).toLocaleDateString();
 }
 
-// Function to create the order list and display it
+
 function displayOrders(orders) {
     const orderList = document.getElementById('order-list');
 
     orders.forEach(order => {
-        // Create a clickable order item
+        // Create a clickable order item using oder.
         const orderItem = document.createElement('div');
         orderItem.classList.add('order-item');
         orderItem.textContent = `Order ${order.PurchaseOrderTypeAbbreviation} - ${order.PurchaseOrderNo}`;
-
-        // Add click event to open pop-up with details
         orderItem.addEventListener('click', () => showOrderDetails(order));
-
-        // Append to the order list
         orderList.appendChild(orderItem);
     });
 }
 
-// Function to show the order details in a pop-up
+
+
 function showOrderDetails(order) {
     const popup = document.getElementById('order-popup');
     const overlay = document.getElementById('overlay');
@@ -366,21 +363,24 @@ function showOrderDetails(order) {
     </div>
     `;
 
-    // Display details in the popup
+
+    
     orderDetails.innerHTML = detailsHtml;
 
     // Show the pop-up and overlay
     popup.style.display = 'block';
     overlay.style.display = 'block';
 }
- 
-// Function to close the pop-up
+
+
+
 function closePopup() {
     document.getElementById('order-popup').style.display = 'none';
     document.getElementById('overlay').style.display = 'none';
 }
 
-// Add event listener to close button
+
+
 document.getElementById('popup-close').addEventListener('click', closePopup);
 
 // Add event listener to overlay to close the popup when clicked outside
